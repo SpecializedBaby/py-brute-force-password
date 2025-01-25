@@ -20,10 +20,15 @@ def sha256_hash_str(to_hash: str) -> str:
     return sha256(to_hash.encode("utf-8")).hexdigest()
 
 
+# synchronous code for CPU-bound
 def brute_force_password() -> None:
-    for password in PASSWORDS_TO_BRUTE_FORCE:
-        encode_pwd = sha256_hash_str(password)
-        print(f"Encode Password is: {encode_pwd}")
+    start, end = 0, 10**8
+
+    for i in range(start, end):
+        candidate = "f{i:08}"
+        encode_pwd = sha256_hash_str(candidate)
+        if encode_pwd in PASSWORDS_TO_BRUTE_FORCE:
+            print(f"Decode Password is: {candidate}")
 
 
 if __name__ == "__main__":
