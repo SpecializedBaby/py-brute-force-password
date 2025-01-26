@@ -25,7 +25,7 @@ def brute_force_password() -> None:
     start, end = 0, 10**8
 
     for i in range(start, end):
-        candidate = "f{i:08}"
+        candidate = f"{i:08}"
         encode_pwd = sha256_hash_str(candidate)
         if encode_pwd in PASSWORDS_TO_BRUTE_FORCE:
             print(f"Decode Password is: {candidate}")
